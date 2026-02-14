@@ -8,26 +8,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(135deg,#ffdde1,#ee9ca7);
-  font-family:'Playfair Display', serif;
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg,#ffdde1,#ee9ca7);
+  font-family: 'Playfair Display', serif;
+  overflow-x: hidden; /* prevents horizontal scroll */
 }
+
 .envelope {
   position: relative;
-  width: 90vw;       /* 90% of viewport width */
-  max-width: 340px;  /* desktop limit */
-  aspect-ratio: 1.6; /* maintain shape */
+  width: 90vw;       /* almost full width on mobile */
+  max-width: 400px;  /* caps size on desktop */
+  aspect-ratio: 1.6; /* keeps proportion */
   background: #f8c8dc;
   cursor: pointer;
   transition: transform 0.6s;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  margin: 0 auto;    /* center horizontally */
 }
+
 
 
 .envelope:before{
@@ -53,13 +55,14 @@ body{
   font-size:34px;
   color:#8b004f;
 }
+
 .letter {
   position: absolute;
-  top: 10%;
+  top: 15%;               /* slightly below top of envelope */
   left: 50%;
   transform: translateX(-50%) translateY(100%);
-  width: 80%;          /* scales with envelope */
-  max-width: 300px;    /* desktop limit */
+  width: 85%;             /* scales with envelope */
+  max-width: 380px;       /* desktop limit */
   background: #fff8f2;
   padding: 22px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -67,6 +70,7 @@ body{
   transition: transform 0.8s ease, opacity 0.8s ease;
   opacity: 0;
 }
+
 
 
 
@@ -231,6 +235,7 @@ function typeMessage(){
 
 </body>
 </html>
+
 
 
 
