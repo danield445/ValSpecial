@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Nene 💕</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+  font-family:'Playfair Display', serif;
+}
+
+/* Envelope */
+.envelope{
+  position:relative;
+  width:340px;
+  height:210px;
+  background:#f8c8dc;
+  cursor:pointer;
+  transition:transform 0.6s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.envelope:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:0;
+  height:0;
+  border-left:170px solid transparent;
+  border-right:170px solid transparent;
+  border-bottom:105px solid #f4a6c1;
+  transform-origin:top;
+  transition:transform 0.6s;
+}
+
+.name{
+  position:absolute;
+  bottom:18px;
+  width:100%;
+  text-align:center;
+  font-family:'Great Vibes', cursive;
+  font-size:34px;
+  color:#8b004f;
+}
+
+/* Letter */
+.letter{
+  position:absolute;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%) translateY(100%);
+  width:300px;
+  background:white;
+  padding:22px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  transition:transform 0.8s ease, opacity 0.8s ease;
+  opacity:0;
+  border-radius:6px;
+}
+
+.message{
+  font-family:'Playfair Display', serif;
+  font-size:16px;
+  line-height:1.9;
+  color:#8b004f; /* deep rose, Bridgerton-ish */
+  text-align:left;
+}
+
+
+
+/* Open state */
+.open .letter{
+  transform:translateX(-50%) translateY(-130px);
+  opacity:1;
+}
+
+.open:before{
+  transform:rotateX(180deg);
+}
+
+.placard span{
+  display:inline-block;
+  padding:6px 10px;
+  margin:4px;
+  border-radius:6px;
+  font-size:15px;
+  background:#ffe6f0;
+  color:#b30059;
+  transform:scale(0);
+  animation:popIn 0.4s forwards;
+}
+.first-line{
+  font-family:'Great Vibes', cursive;
+  font-size:28px;
+  margin-bottom:14px;
+  color:#b30059; /* slightly brighter than body */
+}
+
+.signature{
+  margin-top:18px;
+  font-style:italic;
+  font-size:14px;
+  color:#5a2033; /* soft burgundy for elegance */
+}
+
+
+
+/* pastel variations */
+.placard span:nth-child(3n){ background:#ffd6e8; }
+.placard span:nth-child(4n){ background:#fff0f6; }
+.placard span:nth-child(5n){ background:#ffe0ec; }
+
+@keyframes popIn{
+  to{
+    transform:scale(1);
+  }
+}
+.cursor{
+  display:inline-block;
+  margin-left:4px;
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  0%, 50%, 100% { opacity:1; }
+  25%, 75% { opacity:0; }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="envelope" onclick="openEnvelope()" id="envelope">
+  <div class="name">Für Nene 💕</div>
+
+  <div class="letter">
+    <!--
+    <div class="message">
+    
+      Dear Nene 😊💌<br><br>
+
+      Happy Valentine’s Day!  
+      I just wanted to say I really enjoy talking with you.  
+      These past two months have been full of good vibes,  
+      random laughs, and conversations I actually look forward to every day.<br><br>
+
+      You’ve made my routine a lot more interesting,  
+      and I appreciate how easy it is to talk to you.  
+      That’s rare, and it means a lot.<br><br>
+
+      I hope today gives you an extra reason to smile  
+      (and maybe play a nice 90s love song in the background 😄🎶).<br><br>
+
+      Have a really nice Valentine’s Day, Nene.  
+      You deserve it. 💖
+    </div>-->
+  <div class="message">
+  <p class="first-line">Dear Nene,</p>
+
+  <p id="typeText"><span class="cursor">|</span></p>
+
+  <p class="signature">— Have a lovely Day 💖</p>
+</div>
+
+
+</div>
+</div>
+<script>
+function openEnvelope(){
+  const envelope = document.getElementById("envelope");
+  envelope.classList.toggle("open");
+
+  if(envelope.classList.contains("open")){
+    typeMessage();
+  }
+}
+
+const text = `Happy Valentine’s Day,
+
+I just wanted to say how much I enjoy our chats.
+These past two months have been full of laughs and little moments.
+You make the day feel lighter, and the night a little brighter.
+I hope today leaves you smiling, maybe humming a tune,
+and that something small makes your heart feel good too.`;
+;
+
+let index = 0;
+let typingStarted = false;
+
+function typeMessage(){
+  if(typingStarted) return;
+  typingStarted = true;
+
+  const speed = 35;
+  const target = document.getElementById("typeText");
+
+  function type(){
+    if(index < text.length){
+      const char = text.charAt(index);
+      const cursor = '<span class="cursor">|</span>';
+
+      target.innerHTML =
+        target.innerHTML.replace('<span class="cursor">|</span>', '') +
+        (char === "\n" ? "<br>" : char) +
+        cursor;
+
+      index++;
+      setTimeout(type, speed);
+    } else {
+      target.innerHTML = target.innerHTML.replace('<span class="cursor">|</span>', '');
+    }
+  }
+
+  type();
+}
+</script>
+
+
+</body>
+</html>
